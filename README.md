@@ -20,8 +20,9 @@ This repository contains a collection of Python scripts and utilities designed t
 as well as develop and test a Wordle-solving algorithm. Wordle is a popular word puzzle game where players attempt 
 to guess a secret 5-letter word within six attempts.
 
-https://github.com/josephjquinn/word-wise/assets/81782398/24fe192c-8ca4-4458-bac1-03330102e765
+https://github.com/josephjquinn/word-wise/assets/81782398/4ebdb953-601d-47a7-9b9f-b12863a13923
 
+    
 ## Features
 - Efficient wordle algorithm
 - Automated Wordle solving using Selenium.
