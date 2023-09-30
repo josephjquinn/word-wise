@@ -1,19 +1,17 @@
 # Word-Wise Algorithm Project
-<!-- Add an image or icon if available -->
 
 This project is a Python implementation of a Wordle solver using the Selenium web automation framework. 
 Wordle is a word puzzle game where the player tries to guess a five-letter word within a limited number of attempts.
 
 ## Table of Contents
 
-1. [Introduction](#)
-2. [Selenium](#)
-2. [algorithm.py](#)
-3. [test.py](#)
-4. [compare.py](#)
-2. [graph.py](#)
-4. [Installation](#)
-4. [Usage](#)
+1. [Introduction](#Introduction)
+2. [Selenium](#Selenium)
+3. [algorithm.py](#algorithm-structure-algorithmpy)
+4. [test.py](#Wordle-Game-Simulation-and-Testing-testpy)
+5. [compare.py](#Wordle-Data-Analysis-and-Visualization-graphpy)
+6. [graph.py](#wordle-data-analysis-and-visualization-graphpy)
+7. [Installation](#Installation)
 
 
 ## Introduction
@@ -22,6 +20,7 @@ This repository contains a collection of Python scripts and utilities designed t
 as well as develop and test a Wordle-solving algorithm. Wordle is a popular word puzzle game where players attempt 
 to guess a secret 5-letter word within six attempts.
 
+https://github.com/josephjquinn/word-wise/assets/81782398/24fe192c-8ca4-4458-bac1-03330102e765
 
 ## Features
 - Efficient wordle algorithm
@@ -56,9 +55,10 @@ This version will interact with the official New York Times hosted website and s
 stays the same every day but is the same for everyone who uses the site.
 
 
-## Algorithm Structure
+## Algorithm Structure `algorithm.py`
 The algorithm.py script contains a collection of functions designed to solve the puzzles and assist in generating optimal guesses. 
 These functions are crucial for automating the Wordle gameplay and enhancing the efficiency of solving the puzzle.
+<img src="./assets/algorithmdiagram.png" width="450">
 
 ### Functions Overview
 
@@ -99,13 +99,15 @@ This function computes a score for each word in the list of possible words based
 The algorithm works by progressively narrowing down the list of possible words, prioritizing guesses with the highest probability of success, and ultimately solving Wordle puzzles efficiently. It leverages feedback from previous guesses and statistical analysis of letter frequencies to make intelligent decisions and approach the solution systematically.
 
 By employing these functions strategically, the Wordle solver significantly improves the chances of correctly guessing the target word within the allotted number of attempts.
-<notes image>
+
+<img src="./assets/Wordbot-1.png" width="300"><img src="./assets/Wordbot-2.png" width="300"><img src="./assets/Wordbot-3.png" width="300">
+
 For detailed information on each function and their implementation, refer to the `algorithm.py` script.
 
 
 
 
-## test.py
+## Wordle Game Simulation and Testing `test.py`
 This part of the project allows you to evaluate the algorithm's effectiveness in solving Wordle puzzles efficiently, it 
 does this by running it through a simulation of a wordle game a certain amount of times and collecting the data.
 
@@ -135,7 +137,7 @@ The script exports the following data to the `test_data.csv` file:
 -  First Guess Result
 
 
-## `compare.py`
+## Finding The Best Starting Word `compare.py`
 This part of the project focuses on simulating Wordle games and comparing different starting words' performance. 
 The compare.py script allows you to test various starting words and evaluates their effectiveness in solving Wordle puzzles efficiently.
 
@@ -174,7 +176,7 @@ Data list saved to starting_words_data.csv
 ````
 
 
-## graph.py
+## Wordle Data Analysis and Visualization `graph.py`
 This part of the project focuses on analyzing and visualizing Wordle game data. The graph.py script reads game data from a CSV file, 
 performs various analyses, and generates informative graphs and visualizations to gain insights into the Wordle gameplay. 
 
@@ -241,14 +243,11 @@ It reads and imports data from the `test_data.csv` file.
 
 ### Setup
 #### 1. Download Repository
-      ``` 
       git clone https://github.com/josephjquinn/word-wise.git
-      ```
+      
 #### 2. Navigate to scripts directory
-      ```
       cd scripts
-      ```
+      
 #### 3. Start Program
-      ```
       python3 {script_name).py
-      ```
+      
