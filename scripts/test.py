@@ -1,6 +1,6 @@
 import random
 import time
-from algorithm import get_wordle_guesses, word_remover, bestWord, letterFreq
+from algorithm import word_remover, bestWord, letterFreq
 from helper import get_wordle_guesses, export_to_csv
 
 

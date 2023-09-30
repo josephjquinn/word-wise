@@ -2,7 +2,7 @@ import random
 import time
 import csv
 
-from algorithm import get_wordle_guesses, word_remover, bestWord, letterFreq
+from algorithm import word_remover, bestWord, letterFreq
 from helper import get_wordle_guesses
 
 # Functions for simulating Wordle game logic
