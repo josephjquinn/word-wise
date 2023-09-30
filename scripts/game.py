@@ -1,8 +1,8 @@
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from helper import parseHTML
-from algorithm import get_wordle_guesses, word_remover, bestWord, letterFreq
+from helper import parseHTML, get_wordle_guesses
+from algorithm import word_remover, bestWord, letterFreq
 
 class WordleTests:
 

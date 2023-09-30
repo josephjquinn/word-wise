@@ -1,10 +1,3 @@
-def get_wordle_guesses():
-    words = []
-    with open('../data/wordlist.txt') as f:
-        for line in f:
-            words.append(line.strip())
-    return words
-
 def badLetters(result, guess):
     """Finds incorrect letters in word"""
     bad_letters = []
