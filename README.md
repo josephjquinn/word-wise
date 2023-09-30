@@ -250,5 +250,5 @@ It reads and imports data from the `test_data.csv` file.
       cd scripts
       
 #### 3. Start Program
-      python3 {script_name).py
+      python {script_name}.py
       
