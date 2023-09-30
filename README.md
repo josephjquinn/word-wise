@@ -10,7 +10,7 @@ Wordle is a word puzzle game where the player tries to guess a five-letter word 
 3. [algorithm.py](#algorithm-structure-algorithmpy)
 4. [test.py](#Wordle-Game-Simulation-and-Testing-testpy)
 5. [compare.py](#Wordle-Data-Analysis-and-Visualization-graphpy)
-6. [graph.py](#Wordle-Data-Analysis-and-Visualization-graph)
+6. [graph.py](#wordle-data-analysis-and-visualization-graphpy)
 7. [Installation](#Installation)
 
 
