@@ -59,6 +59,7 @@ stays the same every day but is the same for everyone who uses the site.
 ## Algorithm Structure `algorithm.py`
 The algorithm.py script contains a collection of functions designed to solve the puzzles and assist in generating optimal guesses. 
 These functions are crucial for automating the Wordle gameplay and enhancing the efficiency of solving the puzzle.
+
 <img src="./assets/algorithmdiagram.png" width="450">
 
 ### Functions Overview
