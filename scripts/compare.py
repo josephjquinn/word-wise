@@ -108,7 +108,7 @@ def read_start_words(file_path):
 
 if __name__ == "__main__":
     guess_list = []
-    start_words = read_start_words("../data/startwords.txt")
+    start_words = read_start_words("data/startwords.txt")
     for word in start_words:
         print(f"Testing word: {word}")
         score = run_game(100, word)  # Run 10 games for each word with the word as the initial guess
@@ -119,6 +119,6 @@ if __name__ == "__main__":
     print("Avg Attempts for starting word: ")
     for word, avg_score in guess_list:
         print(f"{word}: {avg_score:.2f}")
-    output_file = "../data/starting_words_data.csv"
+    output_file = "data/starting_words_data.csv"
     write_guess_list_to_csv(guess_list, output_file)
     print(f"Data list saved to {output_file}")

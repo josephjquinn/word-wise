@@ -4,7 +4,7 @@ import csv
 
 def get_wordle_guesses():
     words = []
-    with open("../data/wordlist.txt", "r") as f:
+    with open("data/wordlist.txt", "r") as f:
         for line in f:
             words.append(line.strip())
     return words
