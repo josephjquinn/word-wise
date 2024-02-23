@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from helper import parseHTML, get_wordle_guesses
 from algorithm import word_remover, bestWord, letterFreq
 
+
 class WordleTests:
 
     # initializer
@@ -30,7 +31,9 @@ class WordleTests:
 
             for letter in guess:
                 letters.append(letter)
-                element = self.driver.find_element(By.CSS_SELECTOR, f'button[id="{letter}"]')
+                element = self.driver.find_element(
+                    By.CSS_SELECTOR, f'button[id="{letter}"]'
+                )
                 self.click(element)
 
             element = self.driver.find_element(By.CSS_SELECTOR, 'button[id*="enter"]')
@@ -43,18 +46,23 @@ class WordleTests:
 
             counter = 0
             while result != "ggggg" and counter < 5:
-
                 self.possible_words = word_remover(result, guess, self.possible_words)
-                suggestion = bestWord(self.possible_words, letterFreq(self.possible_words))
+                suggestion = bestWord(
+                    self.possible_words, letterFreq(self.possible_words)
+                )
                 letters = []
                 guess = suggestion
 
                 for letter in guess:
                     letters.append(letter)
-                    element = self.driver.find_element(By.CSS_SELECTOR, f'button[id="{letter}"]')
+                    element = self.driver.find_element(
+                        By.CSS_SELECTOR, f'button[id="{letter}"]'
+                    )
                     self.click(element)
 
-                element = self.driver.find_element(By.CSS_SELECTOR, 'button[id*="enter"]')
+                element = self.driver.find_element(
+                    By.CSS_SELECTOR, 'button[id*="enter"]'
+                )
                 self.click(element)
                 time.sleep(2)
 
@@ -68,6 +76,9 @@ class WordleTests:
             element = self.driver.find_element(By.CSS_SELECTOR, 'button[id="newGame"]')
             self.click(element)
 
+
 if __name__ == "__main__":
     wordle_test = WordleTests()
-    wordle_test.run_game(10) # <- change this value to determine how many game you want to run
+    wordle_test.run_game(
+        10
+    )  # <- change this value to determine how many game you want to run

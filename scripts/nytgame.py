@@ -1,9 +1,10 @@
 import random
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from helper import get_wordle_guesses
+
 
 class WordleTests:
     word_list = []
@@ -35,10 +36,7 @@ class WordleTests:
                 new_word_list = []
         for i in range(len(word)):
             if letter_status[i] == "absent":
-                if (
-                    word[i] not in correct_letters
-                    and word[i] not in present_letters
-                ):
+                if word[i] not in correct_letters and word[i] not in present_letters:
                     for w in self.word_list:
                         if word[i] not in w:
                             new_word_list.append(w)
@@ -49,14 +47,15 @@ class WordleTests:
                 self.word_list = new_word_list
                 new_word_list = []
 
-
     # launches NYT wordle and runs algorithm
     def solve_wordle(self):
         self.driver.get("https://www.nytimes.com/games/wordle/index.html")
 
         try:
             element = WebDriverWait(self.driver, 2).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "button.purr-blocker-card__button"))
+                EC.presence_of_element_located(
+                    (By.CSS_SELECTOR, "button.purr-blocker-card__button")
+                )
             )
             element.click()
         except:
@@ -64,7 +63,9 @@ class WordleTests:
 
         try:
             element = WebDriverWait(self.driver, 2).until(
-                EC.presence_of_element_located((By.CLASS_NAME, 'Welcome-module_button__ZG0Zh'))
+                EC.presence_of_element_located(
+                    (By.CLASS_NAME, "Welcome-module_button__ZG0Zh")
+                )
             )
             element.click()
         except:
@@ -72,13 +73,17 @@ class WordleTests:
 
         try:
             element = WebDriverWait(self.driver, 2).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, 'svg[data-testid="icon-close"]'))
+                EC.presence_of_element_located(
+                    (By.CSS_SELECTOR, 'svg[data-testid="icon-close"]')
+                )
             )
             element.click()
         except:
             pass
 
-        self.driver.execute_script("document.querySelectorAll('div.place-ad').forEach(function(el) { el.remove(); });")
+        self.driver.execute_script(
+            "document.querySelectorAll('div.place-ad').forEach(function(el) { el.remove(); });"
+        )
 
         self.word_list = get_wordle_guesses()
         random.seed()
@@ -100,11 +105,21 @@ class WordleTests:
             self.driver.find_element(By.CSS_SELECTOR, button).click()
             row = f'div[class*="Board"] div[class*="Row-module"]:nth-of-type({num_attempts})'
             tile = row + ' div:nth-child(%s) div[class*="module_tile__"]'
-            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, tile % "5" + '[data-state$="t"]')))
-            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, tile % "5" + '[data-animation="idle"]')))
+            WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located(
+                    (By.CSS_SELECTOR, tile % "5" + '[data-state$="t"]')
+                )
+            )
+            WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located(
+                    (By.CSS_SELECTOR, tile % "5" + '[data-animation="idle"]')
+                )
+            )
             letter_status = []
             for i in range(1, 6):
-                letter_eval = self.driver.find_element(By.CSS_SELECTOR, tile % str(i)).get_attribute("data-state")
+                letter_eval = self.driver.find_element(
+                    By.CSS_SELECTOR, tile % str(i)
+                ).get_attribute("data-state")
                 letter_status.append(letter_eval)
             if letter_status.count("correct") == 5:
                 found_word = True
