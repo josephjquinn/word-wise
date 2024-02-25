@@ -142,7 +142,7 @@ class WordleTests:
 if __name__ == "__main__":
     user_input = ""
     while len(user_input) != 5:
-        user_input = input("Enter a 5-letter word: ")
+        user_input = input("Enter starting word: ")
         if len(user_input) != 5:
             print("Please enter exactly 5 letters.")
     wordle_test = WordleTests()
