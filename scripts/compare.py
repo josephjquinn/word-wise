@@ -5,6 +5,7 @@ import csv
 from algorithm import word_remover, bestWord, letterFreq
 from helper import get_wordle_guesses
 
+
 # Functions for simulating Wordle game logic
 def generate_solution_word():
     # Generate a random 5-letter word as the solution
@@ -25,7 +26,7 @@ def evaluate_guess(word, key):
     for i in range(5):
         if guess[i] == ans[i]:
             green[i] = 1
-            ans[i] = '#'
+            ans[i] = "#"
 
     # Sets each position in yellow list to '1' if the letter is in the correct position in the key but not in the correct position.
     # Then removes the letter from the key list by replacing it with '#'.
@@ -33,7 +34,7 @@ def evaluate_guess(word, key):
         for j in range(5):
             if guess[i] == ans[j] and green[i] != 1:
                 yellow[i] = 1
-                ans[j] = '#'
+                ans[j] = "#"
 
     # Sets each position in white list to '1' if the letter is not in the key at all.
     # It does this by a series of eliminations with the yellow and green lists.
@@ -42,7 +43,9 @@ def evaluate_guess(word, key):
             white[i] = 1
 
     # Convert green, yellow, and white lists into a single string
-    result_string = ''.join(['g' if g == 1 else 'y' if y == 1 else 'w' for g, y in zip(green, yellow)])
+    result_string = "".join(
+        ["g" if g == 1 else "y" if y == 1 else "w" for g, y in zip(green, yellow)]
+    )
 
     return result_string
 
@@ -76,9 +79,13 @@ def run_game(games, start_word):
                 solve_count += 1
                 break  # The game is won
 
-            possible_words = word_remover(result, guess, possible_words)  # Replace with your algorithm
+            possible_words = word_remover(
+                result, guess, possible_words
+            )  # Replace with your algorithm
 
-            suggestion = bestWord(possible_words, letterFreq(possible_words))  # Replace with your algorithm
+            suggestion = bestWord(
+                possible_words, letterFreq(possible_words)
+            )  # Replace with your algorithm
             guess = suggestion
             counter += 1
 
@@ -89,7 +96,7 @@ def run_game(games, start_word):
     total_simulation_time = end_simulation_time - start_simulation_time
     starting_word_avg_guesses = total_guesses / games
     print("Avg Guesses per game: ", starting_word_avg_guesses)
-    starting_word_solve_percentage = (solve_count/games) * 100
+    starting_word_solve_percentage = (solve_count / games) * 100
     print(f"Solve Percentage : {starting_word_solve_percentage}%")
     print(f"Simulation Time: {total_simulation_time:.3f} seconds")
 
@@ -97,21 +104,25 @@ def run_game(games, start_word):
 
 
 def write_guess_list_to_csv(guess_list, output_file):
-    with open(output_file, 'w', newline='') as csv_file:
+    with open(output_file, "w", newline="") as csv_file:
         writer = csv.writer(csv_file)
         for word, avg_score in guess_list:
             writer.writerow([word, avg_score])
 
+
 def read_start_words(file_path):
-    with open(file_path, 'r') as file:
+    with open(file_path, "r") as file:
         return [line.strip() for line in file]
+
 
 if __name__ == "__main__":
     guess_list = []
     start_words = read_start_words("data/startwords.txt")
     for word in start_words:
         print(f"Testing word: {word}")
-        score = run_game(100, word)  # Run 10 games for each word with the word as the initial guess
+        score = run_game(
+            100, word
+        )  # Run 10 games for each word with the word as the initial guess
         guess_list.append((word, score))
         print("-" * 50)
 

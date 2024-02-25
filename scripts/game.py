@@ -73,6 +73,8 @@ class WordleTests:
 
             time.sleep(4)
 
+            print(f"Game {i+1}: Word: {guess}, Attempts: {counter+1}")
+
             element = self.driver.find_element(By.CSS_SELECTOR, 'button[id="newGame"]')
             self.click(element)
 

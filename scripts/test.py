@@ -24,7 +24,7 @@ def evaluate_guess(word, key):
     for i in range(5):
         if guess[i] == ans[i]:
             green[i] = 1
-            ans[i] = '#'
+            ans[i] = "#"
 
     # Sets each position in yellow list to '1' if the letter is in the correct position in the key but not in the correct position.
     # Then removes the letter from the key list by replacing it with '#'.
@@ -32,7 +32,7 @@ def evaluate_guess(word, key):
         for j in range(5):
             if guess[i] == ans[j] and green[i] != 1:
                 yellow[i] = 1
-                ans[j] = '#'
+                ans[j] = "#"
 
     # Sets each position in white list to '1' if the letter is not in the key at all.
     # It does this by a series of eliminations with the yellow and green lists.
@@ -41,7 +41,9 @@ def evaluate_guess(word, key):
             white[i] = 1
 
     # Convert green, yellow, and white lists into a single string
-    result_string = ''.join(['g' if g == 1 else 'y' if y == 1 else 'w' for g, y in zip(green, yellow)])
+    result_string = "".join(
+        ["g" if g == 1 else "y" if y == 1 else "w" for g, y in zip(green, yellow)]
+    )
 
     return result_string
 
@@ -75,14 +77,17 @@ def run_game(games):
                 solve_count += 1
                 break  # The game is won
 
-            possible_words = word_remover(result, guess, possible_words)  # Replace with your algorithm
+            possible_words = word_remover(
+                result, guess, possible_words
+            )  # Replace with your algorithm
 
-            suggestion = bestWord(possible_words, letterFreq(possible_words))  # Replace with your algorithm
+            suggestion = bestWord(
+                possible_words, letterFreq(possible_words)
+            )  # Replace with your algorithm
             guess = suggestion
             counter += 1
         if solved == False:
             print("unsolved")
-
 
         # Data Tracking
         num_guesses.append(counter)
@@ -100,7 +105,9 @@ def run_game(games):
     total_simulation_time = end_simulation_time - start_simulation_time
     print("Game Results:")
     for i, (guesses, time_taken) in enumerate(zip(num_guesses, game_times), start=1):
-        print(f"Game {i}: {guesses} guesses, Time Taken: {time_taken:.5f} seconds, Solved: {puzzle_solved[i - 1]}")
+        print(
+            f"Game {i}: {guesses} guesses, Time Taken: {time_taken:.5f} seconds, Solved: {puzzle_solved[i - 1]}"
+        )
     print("\n---------------------------------")
     print(f"Total Guesses: {total_guesses}")
     print(f"Total Time: {total_simulation_time:.5f} seconds")
@@ -111,4 +118,6 @@ def run_game(games):
 
 
 if __name__ == "__main__":
-    run_game(1000)  # <- change this value to determine how many game you want to run per word
+    run_game(
+        1000
+    )  # <- change this value to determine how many game you want to run per word

@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def badLetters(result, guess):
     """Finds incorrect letters in word"""
     bad_letters = []
@@ -127,8 +128,9 @@ def wordScore(possible_words, frequencies):
             c = w[i]
             score *= 1 + (frequencies[c][i] - max_freq[i]) ** 2
         words.update({w: score})
-        score += np.random.uniform(0,
-                                      1)  # this will increase expectation from 2.95 to 3.23, but is technically fairer
+        score += np.random.uniform(
+            0, 1
+        )  # this will increase expectation from 2.95 to 3.23, but is technically fairer
     return words
 
 
@@ -142,5 +144,3 @@ def bestWord(possible_words, frequencies):
             max_score = scores[w]
             best_word = w
     return best_word
-
-
