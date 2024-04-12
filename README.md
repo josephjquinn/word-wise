@@ -51,10 +51,11 @@ Wordle game statistics for analysis. Here's how Selenium is used in this project
 This version interacts with the Wordle game hosted on wordle-vanilla.vercel.app. This alternate version of the website 
 allows for unlimited games per day and the script will run for as many games as you choose.
 
-### `nytgame.py`
-This version will interact with the official New York Times hosted website and solve the daily wordle. The solution will
-stays the same every day but is the same for everyone who uses the site.
+### `solveWordScore.py`
+This version will interact with the official New York Times hosted website and solve the daily wordle using my updated wordscore algorithm.
 
+### `solveRemoval.py`
+This script will solve the New Work Times worlde with my original removal algorithm that is slightly less efficeient. 
 
 ## Algorithm Structure `algorithm.py`
 The algorithm.py script contains a collection of functions designed to solve the puzzles and assist in generating optimal guesses. 
