@@ -3,14 +3,19 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 from helper import parseHTML, get_wordle_guesses
 from algorithm import word_remover, bestWord, letterFreq
 
 
 class WordleTests:
     # initializer
-    def __init__(self):
-        self.driver = webdriver.Chrome()
+    def __init__(self, show_browser=True):
+        chrome_options = Options()
+        if not show_browser:
+            chrome_options.add_argument("--headless")  # Run Chrome in headless mode
+        self.driver = webdriver.Chrome(options=chrome_options)
+        self.show_browser = show_browser
 
     # function to click on an on-screen element
     def click(self, element):
@@ -145,5 +150,6 @@ if __name__ == "__main__":
         user_input = input("Enter starting word: ")
         if len(user_input) != 5:
             print("Please enter exactly 5 letters.")
-    wordle_test = WordleTests()
+    show_browser = input("Show browser window? (y/n): ").lower() == "y"
+    wordle_test = WordleTests(show_browser)
     wordle_test.solve(user_input.lower())

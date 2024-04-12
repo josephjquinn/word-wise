@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 from helper import get_wordle_guesses
 
 
@@ -10,8 +11,12 @@ class WordleTests:
     word_list = []
 
     # You can change this to your preferred WebDriver
-    def __init__(self):
-        self.driver = webdriver.Chrome()
+    def __init__(self, show_browser=True):
+        chrome_options = Options()
+        if not show_browser:
+            chrome_options.add_argument("--headless")  # Run Chrome in headless mode
+        self.driver = webdriver.Chrome(options=chrome_options)
+        self.show_browser = show_browser
 
     # version 1 of my algorithm, removes words with impossible probabilities, no wordscore implemented
     def modify_word_list(self, word, letter_status):
@@ -142,6 +147,7 @@ class WordleTests:
 
 # Runs program
 if __name__ == "__main__":
-    wordle_test = WordleTests()
+    show_browser = input("Show browser window? (y/n): ").lower() == "y"
+    wordle_test = WordleTests(show_browser)
     wordle_test.solve_wordle()
     wordle_test.close_browser()
