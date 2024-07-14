@@ -83,7 +83,13 @@ This function computes a score for each word in the list of possible words based
 
 The algorithm works by progressively narrowing down the list of possible words, prioritizing guesses with the highest probability of success, and ultimately solving Wordle puzzles efficiently.
 
-<img src="./imgs/Wordbot-1.png" width="300"><img src="./imgs/Wordbot-2.png" width="300"><img src="./imgs/Wordbot-3.png" width="300">
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <img src="./imgs/Wordbot-1.png" width="300">
+  <img src="./imgs/Wordbot-2.png" width="300">
+  <img src="./imgs/Wordbot-3.png" width="300">
+</div>
+
 
 For detailed information on each function and their implementation, refer to the `algorithm.py` script.
 
