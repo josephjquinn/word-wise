@@ -111,7 +111,7 @@ Solve Percentage : 98.6%
 
 ### Exported Data
 
-The script exports the following data to the `test_data.csv` file:
+The script exports the following data to the `output/test.csv` file:
 
 - Game Number
 - Number of Guesses Made
@@ -132,7 +132,7 @@ Prepare a list of starting words: Create a text file (startwords.txt) containing
 Run the script: Execute the script with the prepared list of starting words. For each word in the list, the script simulates a specified number of Wordle games (e.g., 100) with that word as the initial guess.
 
 Results and Comparison: The script collects data on the average number of guesses required to solve the puzzle and the solve percentage for each starting word.
-This data will be saved to `starting_words_data.csv` for processing.
+This data will be saved to `output/starting_words.csv` for processing.
 
 ### Example Output
 

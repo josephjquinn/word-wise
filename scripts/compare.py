@@ -1,6 +1,7 @@
 import random
 import time
 import csv
+import os
 
 from algorithm import word_remover, bestWord, letterFreq
 from helper import get_wordle_guesses
@@ -130,6 +131,8 @@ if __name__ == "__main__":
     print("Avg Attempts for starting word: ")
     for word, avg_score in guess_list:
         print(f"{word}: {avg_score:.2f}")
-    output_file = "data/starting_words_data.csv"
+
+    os.makedirs("./output", exist_ok=True)
+    output_file = "./output/starting_words.csv"
     write_guess_list_to_csv(guess_list, output_file)
     print(f"Data list saved to {output_file}")

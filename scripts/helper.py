@@ -52,7 +52,8 @@ def parseHTML(html_content, row_number):
 def export_to_csv(
     num_guesses, puzzle_solved, game_times, solution_words, first_results
 ):
-    file_path = "data/test_data.csv"
+    file_path = "./output/test.csv"
+    os.makedirs("./output", exist_ok=True)
     game_numbers = list(range(1, len(num_guesses) + 1))
 
     # Combine game data including the first result string
