@@ -210,10 +210,6 @@ performs various analysis and visualizations.
 
      pip install -r requirements.txt
 
-#### 2. Navigate to scripts directory
-
-      cd scripts
-
 #### 3. Run program
 
       python {script_name}.py
