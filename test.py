@@ -1,19 +1,16 @@
 import random
 import time
-import csv
-import os
-
-from algorithm import word_remover, bestWord, letterFreq
-from helper import get_wordle_guesses
+from util.algorithm import word_remover, bestWord, letterFreq
+from util.helper import get_wordle_guesses, export_to_csv
 
 
-# Functions for simulating Wordle game logic
+# Generate a random 5-letter word as the solution
 def generate_solution_word():
-    # Generate a random 5-letter word as the solution
     word_list = get_wordle_guesses()
     return random.choice(word_list)
 
 
+# wordle game logic
 def evaluate_guess(word, key):
     # Setting up method variables and lists
     guess = list(word)
@@ -51,7 +48,8 @@ def evaluate_guess(word, key):
     return result_string
 
 
-def run_game(games, start_word):
+# Simulation loop
+def run_game(games):
     start_simulation_time = time.time()
     game_times = []
     num_guesses = []
@@ -66,16 +64,15 @@ def run_game(games, start_word):
 
         solved = False
         solution_word = generate_solution_word()
-        first_word = start_word
-        guess = first_word
-        first_word_result = evaluate_guess(first_word, solution_word)
+        guess = "slate"
+        first_word_result = evaluate_guess(guess, solution_word)
         possible_words = get_wordle_guesses()  # Replace with your word list generator
         counter = 1
-
         while counter < 7:
             result = evaluate_guess(guess, solution_word)
 
             if result == "ggggg":
+                print(solution_word)
                 solved = True
                 solve_count += 1
                 break  # The game is won
@@ -89,50 +86,38 @@ def run_game(games, start_word):
             )  # Replace with your algorithm
             guess = suggestion
             counter += 1
+        if solved == False:
+            print("unsolved")
 
+        # Data Tracking
+        num_guesses.append(counter)
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        game_times.append(elapsed_time)
+        first_results.append(first_word_result)
+
+        puzzle_solved.append(solved)
+        solution_words.append(solution_word)
         total_guesses = total_guesses + counter
 
     # Print the number of guesses made for each game
     end_simulation_time = time.time()
     total_simulation_time = end_simulation_time - start_simulation_time
-    starting_word_avg_guesses = total_guesses / games
-    print("Avg Guesses per game: ", starting_word_avg_guesses)
-    starting_word_solve_percentage = (solve_count / games) * 100
-    print(f"Solve Percentage : {starting_word_solve_percentage}%")
-    print(f"Simulation Time: {total_simulation_time:.3f} seconds")
-
-    return starting_word_avg_guesses
-
-
-def write_guess_list_to_csv(guess_list, output_file):
-    with open(output_file, "w", newline="") as csv_file:
-        writer = csv.writer(csv_file)
-        for word, avg_score in guess_list:
-            writer.writerow([word, avg_score])
-
-
-def read_start_words(file_path):
-    with open(file_path, "r") as file:
-        return [line.strip() for line in file]
+    print("Game Results:")
+    for i, (guesses, time_taken) in enumerate(zip(num_guesses, game_times), start=1):
+        print(
+            f"Game {i}: {guesses} guesses, Time Taken: {time_taken:.5f} seconds, Solved: {puzzle_solved[i - 1]}"
+        )
+    print("\n---------------------------------")
+    print(f"Total Guesses: {total_guesses}")
+    print(f"Total Time: {total_simulation_time:.5f} seconds")
+    print(f"Average Guess # until solve : {total_guesses / games:.5f}")
+    print(f"Solve Percentage : {(solve_count / games) * 100:.1f}%")
+    print("---------------------------------")
+    export_to_csv(num_guesses, puzzle_solved, game_times, solution_words, first_results)
 
 
 if __name__ == "__main__":
-    guess_list = []
-    start_words = read_start_words("data/startwords.txt")
-    for word in start_words:
-        print(f"Testing word: {word}")
-        score = run_game(
-            100, word
-        )  # Run 10 games for each word with the word as the initial guess
-        guess_list.append((word, score))
-        print("-" * 50)
-
-    # Print the average guesses per game for each word
-    print("Avg Attempts for starting word: ")
-    for word, avg_score in guess_list:
-        print(f"{word}: {avg_score:.2f}")
-
-    os.makedirs("./output", exist_ok=True)
-    output_file = "./output/starting_words.csv"
-    write_guess_list_to_csv(guess_list, output_file)
-    print(f"Data list saved to {output_file}")
+    run_game(
+        1000
+    )  # <- change this value to determine how many game you want to run per word

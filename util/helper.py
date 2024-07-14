@@ -2,25 +2,22 @@ from bs4 import BeautifulSoup
 import csv
 import os
 
-os.chdir("..")
-
 
 def get_wordle_guesses():
     words = []
-    with open("data/wordlist.txt", "r") as f:
+    with open("./data/wordlist.txt", "r") as f:
         for line in f:
             words.append(line.strip())
     return words
 
 
 def read_data(file_path):
-    data = []  # Initialize an empty list to store data
+    data = []
 
     with open(file_path, "r") as csvfile:
         csv_reader = csv.reader(csvfile)
-        header = next(csv_reader)  # Read the header row
+        header = next(csv_reader)
 
-        # Iterate through each row and append to the data list
         for row in csv_reader:
             data.append(row)
 
@@ -30,14 +27,13 @@ def read_data(file_path):
 def parseHTML(html_content, row_number):
     soup = BeautifulSoup(html_content, "html.parser")
 
-    # Find the row-0 div
     row_id = f"row-{row_number}"
     row = soup.find("row", {"id": row_id})
 
     code = []
     count = 0
     for box in row.find_all("box"):
-        box_class = box.get("class")[0]  # Get the first class of the 'box' element
+        box_class = box.get("class")[0]
         if box_class == "wrongLetter":
             code.append("w")
         elif box_class == "rightSpot":
@@ -48,7 +44,6 @@ def parseHTML(html_content, row_number):
     return code
 
 
-# Function to export data to csv format
 def export_to_csv(
     num_guesses, puzzle_solved, game_times, solution_words, first_results
 ):
@@ -56,7 +51,6 @@ def export_to_csv(
     os.makedirs("./output", exist_ok=True)
     game_numbers = list(range(1, len(num_guesses) + 1))
 
-    # Combine game data including the first result string
     game_data = list(
         zip(
             game_numbers,
@@ -79,7 +73,7 @@ def export_to_csv(
                 "Solution Word",
                 "First Result",
             ]
-        )  # Include the new column
+        )
         csv_writer.writerows(game_data)
 
     print(f"Data has been exported to {file_path}")
