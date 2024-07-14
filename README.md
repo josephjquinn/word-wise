@@ -85,9 +85,9 @@ The algorithm works by progressively narrowing down the list of possible words, 
 
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-  <img src="./imgs/Wordbot-1.png" width="300">
-  <img src="./imgs/Wordbot-2.png" width="300">
-  <img src="./imgs/Wordbot-3.png" width="300">
+  <img src="./imgs/Wordbot-1.png" width="250">
+  <img src="./imgs/Wordbot-2.png" width="250">
+  <img src="./imgs/Wordbot-3.png" width="250">
 </div>
 
 
